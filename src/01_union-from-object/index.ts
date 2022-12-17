@@ -1,4 +1,8 @@
-// Sometimes you may want to type an object which has several different optional keys, but all with the same type.
+// https://www.totaltypescript.com/tips/derive-a-union-type-from-an-object
+
+//? Derive a union type from an object
+
+//* Sometimes you may want to type an object which has several different optional keys, but all with the same type.
 
 export const fruitCount = {
   apple: 1,
@@ -6,7 +10,7 @@ export const fruitCount = {
   banana: 26,
 };
 
-// Want something like this:
+//* Want something like this:
 // type SingleFruitCount =
 //   | {
 //       apple: number
@@ -20,13 +24,12 @@ export const fruitCount = {
 
 type FruitCount = typeof fruitCount;
 
+//* Hover over "SingleFruitCount" to see the type
 type SingleFruitCount = {
   [K in keyof FruitCount]: {
     [Key in K]: number;
   };
 }[keyof FruitCount];
-
-//* Now hover over "SingleFruitCount" to see the type
 
 const singleFruitCount: SingleFruitCount = {
   banana: 12,
