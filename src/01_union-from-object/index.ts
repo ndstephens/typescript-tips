@@ -2,7 +2,7 @@
 
 //? Derive a union type from an object
 
-//* Sometimes you may want to type an object which has several different optional keys, but all with the same type.
+//* Sometimes you may want to use an object to auto-generate a union type which has several different (but specific) optional keys, all with the same type.
 
 export const fruitCount = {
   apple: 1,
@@ -10,7 +10,7 @@ export const fruitCount = {
   banana: 26,
 };
 
-//* Want something like this:
+//* Want to auto-generate something like this:
 // type SingleFruitCount =
 //   | {
 //       apple: number
@@ -31,6 +31,7 @@ type SingleFruitCount = {
   };
 }[keyof FruitCount];
 
+//* We get type safety and autocomplete while creating "singleFruitCount"
 const singleFruitCount: SingleFruitCount = {
   banana: 12,
 };
